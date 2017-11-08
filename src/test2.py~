@@ -1,0 +1,21 @@
+#coding=utf-8
+def pinyin_2_hanzi(pinyinList):
+    from Pinyin2Hanzi import DefaultDagParams
+    from Pinyin2Hanzi import dag
+
+    dagParams = DefaultDagParams()
+    # 10个候选值
+    result = dag(dagParams, pinyinList, path_num=10, log=True)
+    # for item in result[0]:
+        # socre = item.score # 得分
+    res = result[0].path # 转换结果
+    print res
+    print res[0]
+
+if __name__ == '__main__':
+    lists = ['tian', 'jin', 'shi', 'shi', 'gong', 'dui', 'wu', 'jiao', 'liu', 'fu', 'wu', 'zhong', 'xin']
+    # lists = ['tian','jin','shi','ke','xue','ji','shu','qi','kan','xue','hui']
+    # lists = ['tian','jin','shi','hua','bei','di','zhi','kan','cha','ju']
+    # lists = ['wo', 'you', 'yi', 'zhi', 'xiao', 'mao', 'lv'] 
+    print lists[:2]   
+    pinyin_2_hanzi(lists[:2])

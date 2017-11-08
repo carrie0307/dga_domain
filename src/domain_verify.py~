@@ -1,0 +1,9 @@
+#coding=utf-8
+import whois
+
+domains = ['baidu.com', 'taobao.com', 'dsfadfa.biz', 'ewrwerf.info', 'dfwerdcmzcsa.biz']
+for domain in domains:
+	who = whois.whois(domain)
+	print who.status
+# for key in who:
+   #  print who[key]

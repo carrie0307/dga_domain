@@ -1,0 +1,7 @@
+#coding=utf-8
+import nltk
+nltk.download()
+
+text = "Good muffins cost $3.88\nin New York.  Please buy me two of them."
+
+nltk.sent_tokenize(text)
