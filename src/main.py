@@ -8,13 +8,13 @@ import json
 import Queue
 from pymongo import *
 
-thread_num = 15
+thread_num = 1
 
 
 '''建立链接'''
 client = MongoClient('172.29.152.152', 27017)
 db = client.domain_icp_analysis
-collection = db.domain_dga_word_pinyin
+collection = db.domain_dga_head_words
 
 domain_q = Queue.Queue()
 new_domain_q = Queue.Queue()
@@ -29,7 +29,7 @@ def json_load():
     res = collection.find({'flag':1},{'domain': True, '_id':False})
     for domain in list(res):
         finish_domains.append(str(domain["domain"]))
-    with open('domains_data.json') as json_file:
+    with open('domains_data2.json') as json_file:
         data = json.load(json_file)
         for domain in data:
             if domain["domain"] not in finish_domains:
@@ -50,9 +50,11 @@ def generate_new_domains_handler():
         '''全部首字母生成'''
         # new_domains = domain_generate.generateBy_all_words(domain_info)
         '''拼音不连续词生成 '''
-        new_domains = domain_generate.generateBy_part_Pinyinwords(domain_info)
+        # new_domains = domain_generate.generateBy_part_Pinyinwords(domain_info)
         '''英文不连续词生成 '''
         # new_domains = domain_generate.generateBy_part_Enwords(domain_info)
+        '''前若干个字首字母生成'''
+        new_domains = domain_generate.generateBy_head_words(domain_info)
         # print new_domains
         domain_verify_q.put([domain_info["domain"], new_domains])
     print "new domains over ..."
@@ -94,20 +96,19 @@ def save_json_data():
 
 def main():
     json_load()
-    # time.sleep(10)
-    # print "开始生成新域名\n"
-    # generate_new_domains = threading.Thread(target=generate_new_domains_handler)
-    # generate_new_domains.start()
-    # domain_verify_td = []
-    # print "验证新域名\n"
-    # for _ in range(thread_num):
-    #     domain_verify_td.append(threading.Thread(target=verify_domains_handler))
-    # for td in domain_verify_td:
-    #     td.start()
-    # print "开始存储结果\n"
-    # save_res = threading.Thread(target=save_json_data)
-    # save_res.start()
-    # save_res.join()
+    print "开始生成新域名\n"
+    generate_new_domains = threading.Thread(target=generate_new_domains_handler)
+    generate_new_domains.start()
+    domain_verify_td = []
+    print "验证新域名\n"
+    for _ in range(thread_num):
+        domain_verify_td.append(threading.Thread(target=verify_domains_handler))
+    for td in domain_verify_td:
+        td.start()
+    print "开始存储结果\n"
+    save_res = threading.Thread(target=save_json_data)
+    save_res.start()
+    save_res.join()
 
 
 if __name__ == '__main__':

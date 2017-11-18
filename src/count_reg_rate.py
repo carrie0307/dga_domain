@@ -11,7 +11,7 @@ from pymongo import *
 '''建立链接'''
 client = MongoClient('172.29.152.152', 27017)
 db = client.domain_icp_analysis
-collection = db.domain_dga_word_pinyin
+collection = db.domain_dga_head_words
 
 def count_res_info(res):
     '''
@@ -31,10 +31,6 @@ def count_res_info(res):
     print "已注册新域名总量：" + str(reg_count) + '   占比：' + str(round(reg_count/total, 3) * 100) + '%\n'
     print "未注册新域名总量：" + str(unreg_count) + '   占比：' + str(round(unreg_count/total, 3) * 100) + '%\n'
     print "检测出现异常新域名总量：" + str(except_count) + '   占比：' + str(round(except_count/total, 3) * 100) + '%\n'
-
-
-
-
 
 
 

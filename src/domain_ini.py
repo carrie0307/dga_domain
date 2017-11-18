@@ -8,7 +8,7 @@ import json
 
 client = MongoClient('172.29.152.152', 27017)
 db = client.domain_icp_analysis
-collection = db.domain_dga_word_pinyin
+collection = db.domain_dga_head_words
 
 def json_load():
     domains = []

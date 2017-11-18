@@ -10,6 +10,15 @@ import domain_gene_assis
 #     "web_name_en": "Dinghu District Real Estate Association of Zhaoqing"
 #   }
 
+domain_info = {
+    "domain": "www.zqdhfx.com",
+    "province_pinyin": "guang dong sheng",
+    "web_name_pinyin": "zhao qing shi ding hu qu fang di chan xie hui",
+    "department_pinyin": "zhao qing shi ding hu qu fang di chan xie hui",
+    "department_en": "Dinghu Zhaoqing District Real Estate Association",
+    "web_name_en": "Dinghu District Real Estate Association of Zhaoqing"
+  }
+
 # domain_info = {
 #     "domain": "www.qc-center.com",
 #     "province_pinyin": "tian jin shi",
@@ -132,6 +141,8 @@ def generateBy_head_words(domain_info):
                         new_domain = new_main_domain + tld
                         head_new_domains.append(new_domain)
                 i += 1
+    print len(head_new_domains)
+    head_new_domains = list(set(head_new_domains)) # 去重
     return head_new_domains
 
 
@@ -143,4 +154,6 @@ if __name__ == '__main__':
     # print generateBy_all_words(domain_info)
     # print generateBy_part_Pinyinwords(domain_info)
     # print generateBy_part_Enwords(domain_info)
-    print generateBy_head_words(domain_info)
+    domains = generateBy_head_words(domain_info)
+    print domains
+    print len(domains)
