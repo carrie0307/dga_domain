@@ -141,7 +141,6 @@ def generateBy_head_words(domain_info):
                         new_domain = new_main_domain + tld
                         head_new_domains.append(new_domain)
                 i += 1
-    print len(head_new_domains)
     head_new_domains = list(set(head_new_domains)) # 去重
     return head_new_domains
 

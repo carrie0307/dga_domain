@@ -29,6 +29,9 @@ def count_res_info(res):
 
 
 def create_new_file():
+    '''
+    把数据库内未运行的域名导出，生成new_file.json（运行中断时处理）
+    '''
     print '获取域名...'
     finish_domains = []
     domain_info = []
@@ -64,10 +67,13 @@ def read_file():
 
 
 if __name__ == '__main__':
-    with open('domain_dga_fenci_data.json', 'r') as json_file:
-        data = json.load(json_file)
-    for i in data:
-        print i['new_domains']
+    create_new_file()
+    # with open('domain_dga_word_en_data.json', 'r') as json_file:
+    #     data = json.load(json_file)
+    # for i in data:
+    #     if not i['domain']:
+    #         print i
+    #         print '\n'
     # read_file()
     # create_new_file()
     # name = "xin xi chan ye bu zhuan yong cai liao zhi liang jian du jian yan zhong xin"

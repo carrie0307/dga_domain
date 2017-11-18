@@ -1,0 +1,5 @@
+1. domains_data.txt中，有域名为None，但其他属性值都有的(domain = "None" 20余个);
+    在跑的时候,会自动将域名也置为None存储
+
+
+2. 关于重复域名的问题结果存储的问题，在main里面的update中，加上一个条件'flag:0'(没有实践)

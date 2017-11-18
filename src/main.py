@@ -8,7 +8,7 @@ import json
 import Queue
 from pymongo import *
 
-thread_num = 1
+thread_num = 15
 
 
 '''建立链接'''
@@ -25,16 +25,16 @@ res_json = []
 def json_load():
     global domain_q
     print '获取域名...'
-    finish_domains = []
-    res = collection.find({'flag':1},{'domain': True, '_id':False})
-    for domain in list(res):
-        finish_domains.append(str(domain["domain"]))
-    with open('domains_data2.json') as json_file:
+    # finish_domains = []
+    # res = collection.find({'flag':1},{'domain': True, '_id':False})
+    # for domain in list(res):
+        # finish_domains.append(str(domain["domain"]))
+    with open('new_file.json') as json_file:
         data = json.load(json_file)
         for domain in data:
-            if domain["domain"] not in finish_domains:
+            # if domain["domain"] not in finish_domains:
                 # print '---'
-                domain_q.put(domain)
+            domain_q.put(domain)
     print '获取域名结束...'
 
 
@@ -68,8 +68,13 @@ def verify_domains_handler():
     global domain_rew_q
     while True:
         try:
-            domain,new_domains = domain_verify_q.get(timeout=200)
-            time.sleep(2)
+            domain,new_domains = domain_verify_q.get(timeout=1200)
+            print domain
+            print 'verify get ...'
+            if not domain:
+                # 原domains_data.json中，存在域名未“None”的，在这里会表现为None<type 'NoneType'>
+                domain = "None"
+            time.sleep(1)
         except:
             print '无待验证域名...\n'
             break
@@ -83,16 +88,18 @@ def save_json_data():
     global domain_res_q
     global res_json
     global collection
-    counter = 0
     while True:
         try:
-            domain, new_domains, domain_res = domain_res_q.get(timeout=200)
-            print domain
-            collection.update({'domain': domain}, {'$set':{'flag':1, 'new_domains':new_domains, 'domains_reg':domain_res}})
-            print '----'
+            domain, new_domains, domain_res = domain_res_q.get(timeout=1200)
         except:
             print '存储结束...\n'
             break
+        try:
+            collection.update({'domain': domain}, {'$set':{'flag':1, 'new_domains':new_domains, 'domains_reg':domain_res}})
+            print domain
+            print 'save ...'
+        except:
+            print '存储有误...\n'
 
 def main():
     json_load()
