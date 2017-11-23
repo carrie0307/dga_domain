@@ -1,4 +1,8 @@
 #coding=utf-8
+
+'''
+    域名生成的一些辅助函数
+'''
 from pypinyin import pinyin,Style
 import jieba
 from Pinyin2Hanzi import DefaultDagParams

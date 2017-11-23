@@ -18,8 +18,9 @@ if __name__ == '__main__':
     res = list(res)
     for domain_info in res:
         dga_res.append(domain_info)
-    with open('domain_dga_fenci_data.json', 'w') as json_file:
+    with open('domain_dga_headwords_data.json', 'w') as json_file:
         json_file.write(json.dumps(dga_res))
+    print 'over ... '
     # with open('domain_ega_all.json') as json_file:
     #     data = json.load(json_file)
     # for domain in data:

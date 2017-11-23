@@ -1,14 +1,14 @@
 #coding=utf-8
+
+'''
+
+    具体的四种域名生成方法
+    
+'''
+
+
 import domain_gene_assis
 
-# domain_info = {
-#     "domain": "www.zqdhfx.com",
-#     "province_pinyin": "guang dong sheng",
-#     "web_name_pinyin": "zhao qing shi ding hu qu fang di chan xie hui",
-#     "department_pinyin": "zhao qing shi ding hu qu fang di chan xie hui",
-#     "department_en": "Dinghu Zhaoqing District Real Estate Association",
-#     "web_name_en": "Dinghu District Real Estate Association of Zhaoqing"
-#   }
 
 domain_info = {
     "domain": "www.zqdhfx.com",
@@ -19,25 +19,7 @@ domain_info = {
     "web_name_en": "Dinghu District Real Estate Association of Zhaoqing"
   }
 
-# domain_info = {
-#     "domain": "www.qc-center.com",
-#     "province_pinyin": "tian jin shi",
-#     "web_name_pinyin": "xin xi chan ye bu zhuan yong cai liao zhi liang jian du jian yan zhong xin",
-#     "department_pinyin": "zhong guo dian zi ke ji ji tuan gong si di si shi liu yan jiu suo",
-#     "department_en": "The forty-sixth Research Institute of China Electronic Technology Group Corporation",
-#     "web_name_en": "Special material quality supervision and inspection center of Ministry of information industry"
-#   }
 
-
-
-# domain_info = {
-#     "domain": "www.mzgcc.com",
-#     "province_pinyin": "guang dong sheng",
-#     "web_name_pinyin": "mei zhou shi gong shang ye lian he hui ( zong shang hui )",
-#     "department_pinyin": "guang dong sheng mei zhou shi gong shang ye lian he hui",
-#     "department_en": "Meizhou Guangdong Federation of industry and Commerce",
-#     "web_name_en": "Meizhou Federation of industry and Commerce ( General Chamber of Commerce)"
-#   }
 
 tlds_list = ['.com', '.cn', '.com.cn', '.gov.cn', '.net', '.org']
 ini_name_list = ["web_name_pinyin", "department_pinyin", "department_en", "web_name_en"]

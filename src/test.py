@@ -67,31 +67,7 @@ def read_file():
 
 
 if __name__ == '__main__':
-    create_new_file()
-    # with open('domain_dga_word_en_data.json', 'r') as json_file:
-    #     data = json.load(json_file)
-    # for i in data:
-    #     if not i['domain']:
-    #         print i
-    #         print '\n'
-    # read_file()
-    # create_new_file()
-    # name = "xin xi chan ye bu zhuan yong cai liao zhi liang jian du jian yan zhong xin"
-    # name = "xin xi chan ye bu zhuan yong"
-    # name_list = name.split()
-    # new_main_domain = ''
-    # i = 0
-    # while i < min(len(name_list), 3):
-    #     if len(name_list[i][0]) > 0 and (name_list[i][0].isdigit() or name_list[i][0].isalpha() or name_list[i][0] == '-'):
-    #         new_main_domain += name_list[i][0]
-    #     i += 1
-    # if i >= len(name_list):# 说明len(name_list)<4,只能生成长度小于4的主域名
-    #     print new_main_domain
-    #     # 直接与顶级域组合
-    # else: # 可以生成长度大于4的主域名
-    #     while i < min(len(name_list), 6):
-    #         if len(name_list[i][0]) > 0 and (name_list[i][0].isdigit() or name_list[i][0].isalpha() or name_list[i][0] == '-'):
-    #             new_main_domain += name_list[i][0]
-    #             print new_main_domain
-    #             # 直接与顶级域组合
-    #         i += 1
+    with open('domain_dga_headwords_data.json', 'r') as json_file:
+        data = json.load(json_file)
+    for i in data:
+        print i['new_domains']
